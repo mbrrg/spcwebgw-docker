@@ -1,0 +1,90 @@
+<!--
+   CONFIGURATION OPTIONS
+
+   enable_get_auth
+      Set this flag to yes to enable user and password control for GET 
+      requests (queries).
+      Run spc-web-gateway -A to set user and password. 
+      Valid values: yes or no. Default: yes
+
+   enable_put_auth
+      Set this flag to yes to enable user and password control for PUT 
+      requests (commands).
+      Run spc-web-gateway -A to set user and password.
+      Valid values: yes or no. Default: yes
+
+   enable_ws_auth
+      Set this flag to yes to enable user and password control for Websocket
+      access. 
+      Run spc-web-gateway -A to set user and password.
+      Valid values: yes or no. Default: yes
+
+   enable_edp_encryption
+      Set this flag to yes to enable encrypted communication to the
+      SPC Panel. The EDP configuration in the SPC Panel must match this
+      setting. Run spc-web-gateway -A to set encryption key.
+      Valid values: yes or no. Default: yes
+
+   enable_ssl_encryption
+      Set this flag to yes to enable SSL encrypted communication to the
+      embedded web server. With SSL enabled, web pages can only be accessed 
+      by using the https prefix.
+      Valid values: yes or no. Default: yes
+
+   access_control_list
+      Access control list (ACL) for web client connections. ACL is a 
+      comma separated list of IP subnets, each subnet is prepended by 
+      '-' or '+' sign. Plus means allow, minus means deny. If subnet mask 
+      is omitted, like "-1.2.3.4", then it means single IP address. 
+      Mask may vary from 0 to 32 inclusive. On each request, full list is 
+      traversed, and last match wins. Default: if not set, ALLOW ALL.
+
+      Example: -0.0.0.0/0,+192.168.0.0/24
+      Deny connections from everywhere, allow only all IP addresses from
+      subnet 192.168.0.0 mask 255.255.255.0 to connect.
+
+   http_port
+      Port to listen on for web client connections. Default: 8088
+ 
+   tcp_port
+      TCP/UDP port to listen on for SPC panel connections. 
+      Must match value in SPC EDP communication settings.
+
+   spc_id
+      SPC EDP Panel ID. A number which will be used by the SPC Web Gateway to 
+      identify the SPC panel. Must match value in SPC EDP communications 
+      settings.
+
+   gateway_id
+      SPC Gateway ID. A number which will be used by the SPC panel to 
+      identify the SPC Web Gateway as a EDP receiver. Must match value in 
+      SPC EDP Receiver settings.
+   
+   spc_time_diff
+      How many hours the normal time differs between the SPC panel and the
+      SPC Web Gateway system. Set to 0 if both systems have same time setting.
+      Example: If SPC Panel has local Swedish time (CET) and the 
+      SPC Web Gateway system has Greenwich Mean Time (GMT) the value should
+      be +1.
+      Valid values: -24 to +24. Default: 0
+
+   spc_dst
+      Set this flag to yes if Automatic Daylight Saving Time is enabled in 
+      the SPC panel. 
+      Valid values: yes or no. Default yes. 
+      
+-->
+<config>
+   <enable_get_auth>${ENABLE_GET_AUTH:-yes}</enable_get_auth>
+   <enable_put_auth>${ENABLE_PUT_AUTH:-yes}</enable_put_auth>
+   <enable_ws_auth>${ENABLE_WS_AUTH:-yes}</enable_ws_auth>
+   <enable_edp_encryption>${ENABLE_EDP_ENCRYPTION:-yes}</enable_edp_encryption>
+   <enable_ssl_encryption>${ENABLE_SSL_ENCRYPTION:-yes}</enable_ssl_encryption>
+   <access_control_list>${ACL:--0.0.0.0/0}</access_control_list>
+   <http_port>8088</http_port>
+   <tcp_port>16000</tcp_port>
+   <spc_id>${SPC_ID}</spc_id>
+   <gateway_id>${GATEWAY_ID}</gateway_id>
+   <spc_time_diff>${SPC_TIME_DIFF:-0}</spc_time_diff>
+   <spc_dst>${SPC_DST:-yes}</spc_dst>
+</config>
