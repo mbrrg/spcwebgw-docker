@@ -1,4 +1,7 @@
 # SPC Web Gateway Docker image
+## Building
+Put the SPC Web Gateway installation tarball (`spc-web-gateway-ubuntu_x86_64.1.2.tar.gz`) in the build directory. The version is currently hardcoded.
+
 ## Environment variables
 | Name  | Comment  | Default  |
 |---|---|---|
