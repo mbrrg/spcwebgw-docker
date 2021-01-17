@@ -3,6 +3,7 @@
 set -e
 
 envsubst < config_template.xml > config.xml
+echo -e "config.xml content:\n$(<config.xml)"
 
 if [[ $EDP_KEY ]]; then
     echo "Generating auth/edp_key"
@@ -27,4 +28,5 @@ if [[ $WS_AUTH_USER && $WS_AUTH_PWD ]]; then
     echo md5sum "$WS_AUTH_USER:spc-web-gateway:$pwd_md5" > auth/passwd_ws
 fi
 
+echo "Launching spc-web-gateway with parameters \"$@\""
 exec /opt/spc-web-gateway-ubuntu_x86_64.1.2/spc-web-gateway "$@"
