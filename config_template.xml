@@ -80,7 +80,7 @@
    <enable_ws_auth>${ENABLE_WS_AUTH:-yes}</enable_ws_auth>
    <enable_edp_encryption>${ENABLE_EDP_ENCRYPTION:-yes}</enable_edp_encryption>
    <enable_ssl_encryption>${ENABLE_SSL_ENCRYPTION:-yes}</enable_ssl_encryption>
-   <access_control_list>${ACL:--0.0.0.0/0}</access_control_list>
+   <access_control_list>${ACL:-+0.0.0.0/0}</access_control_list>
    <http_port>8088</http_port>
    <tcp_port>16000</tcp_port>
    <spc_id>${SPC_ID}</spc_id>
